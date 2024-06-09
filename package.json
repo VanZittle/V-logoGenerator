@@ -1,0 +1,16 @@
+{
+  "name": "v-logogenerator",
+  "version": "1.0.0",
+  "description": "Create svg logos with basic shapes",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "color": "^4.2.3",
+    "inquirer": "^8.2.4"
+  }
+}
