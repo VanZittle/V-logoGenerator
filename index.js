@@ -24,3 +24,31 @@ const questions = [
         message: 'Enter a color for that shape (e.g., red, #ff0000):',
     },
 ];
+
+const svgGenerator = ({ text, textColor, shape, color }) => {
+
+    switch (shape) {
+        case 'Circle':
+            return `
+<svg height="250" width="250">
+    <circle cx="125" cy="125" r="120" fill="${color}" />
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="90px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
+</svg>`;
+            break;
+        case 'Square':
+            return `
+<svg height="250" width="250">
+    <rect width="250" height="250"  fill="${color}" />
+    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="90px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
+</svg>`;
+            break;
+        case 'Triangle':
+            return `
+<svg height="250" width="250">
+    <polygon points="125,50 250,200 0,200" fill="${color}" />
+    <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" font-size="60px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
+</svg>`;
+            break;
+    }
+
+}
