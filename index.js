@@ -51,4 +51,15 @@ const svgGenerator = ({ text, textColor, shape, color }) => {
             break;
     }
 
-}
+} 
+
+inquirer.prompt(questions).then((data) => {
+    const svgContent = svgGenerator(data)
+    fs.writeFile('logo.svg', svgContent, (err) => {
+        if (err) throw err;
+        console.log('The logo has been saved as logo.svg!');
+    });
+});
+// const objSVG = {text:'HGDS', textColor:'red', shape: 'Circle', color:'black'}
+// console.log(svgGenerator(objSVG));
+module.exports = {svgGenerator}
