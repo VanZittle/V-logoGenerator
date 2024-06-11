@@ -31,8 +31,8 @@ const svgGenerator = ({ text, textColor, shape, color }) => {
         case 'Circle':
             return `
 <svg height="250" width="250">
-    <circle cx="125" cy="125" r="120" fill="${color}" />
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="90px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
+    <circle cx="125" cy="125" r="125" fill="${color}" />
+    <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" font-size="80px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
 </svg>`;
             break;
         case 'Square':

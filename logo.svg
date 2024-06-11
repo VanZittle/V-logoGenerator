@@ -1,5 +1,5 @@
 
 <svg height="250" width="250">
-    <polygon points="125,50 250,200 0,200" fill="dark blue" />
-    <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" font-size="60px" fill="yellow" font-weight="bold" font-family="sans-serif">LKJH</text>
+    <circle cx="125" cy="125" r="125" fill="black" />
+    <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" font-size="80px" fill="red" font-weight="bold" font-family="sans-serif">JHGF</text>
 </svg>
