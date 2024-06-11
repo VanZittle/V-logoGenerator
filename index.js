@@ -1,6 +1,8 @@
+// Required modules
 const inquirer = require('inquirer');
 const fs = require('fs');
 
+// Array of questions to be prompted
 const questions = [
     {
         type: 'input',
@@ -24,7 +26,7 @@ const questions = [
         message: 'Enter a color for that shape (e.g., red, #ff0000):',
     },
 ];
-
+// SVG generator function
 const svgGenerator = ({ text, textColor, shape, color }) => {
 
     switch (shape) {
@@ -52,7 +54,7 @@ const svgGenerator = ({ text, textColor, shape, color }) => {
     }
 
 } 
-
+// Fuction to actually prompt the questions and write the SVG file
 inquirer.prompt(questions).then((data) => {
     const svgContent = svgGenerator(data)
     fs.writeFile('logo.svg', svgContent, (err) => {
