@@ -1,67 +1,54 @@
-// Required modules
 const inquirer = require('inquirer');
 const fs = require('fs');
+const { Circle, Square, Triangle } = require('./lib/shapes');
 
-// Array of questions to be prompted
-const questions = [
+inquirer.prompt([
     {
         type: 'input',
         name: 'text',
         message: 'Enter the text for your logo (max 4 letters):',
+        validate: input => input.length <= 4 || 'Text must be four characters or less'
     },
     {
         type: 'input',
         name: 'textColor',
-        message: 'Enter a color for your text (e.g., red, #ff0000):',
+        message: 'Enter a color for your text (e.g., red, #ff0000):'
     },
     {
         type: 'list',
         name: 'shape',
         message: 'Choose a shape for your logo:',
-        choices: ['Circle', 'Square', 'Triangle'],
+        choices: ['Circle', 'Square', 'Triangle']
     },
     {
         type: 'input',
-        name: 'color',
-        message: 'Enter a color for that shape (e.g., red, #ff0000):',
-    },
-];
-// SVG generator function
-const svgGenerator = ({ text, textColor, shape, color }) => {
-
-    switch (shape) {
+        name: 'shapeColor',
+        message: 'Enter a color for that shape (e.g., red, #ff0000):'
+    }
+]).then(answers => {
+    let shape;
+    switch (answers.shape) {
         case 'Circle':
-            return `
-<svg height="250" width="250">
-    <circle cx="125" cy="125" r="125" fill="${color}" />
-    <text x="50%" y="53%" dominant-baseline="middle" text-anchor="middle" font-size="80px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
-</svg>`;
+            shape = new Circle(answers.shapeColor);
             break;
         case 'Square':
-            return `
-<svg height="250" width="250">
-    <rect width="250" height="250"  fill="${color}" />
-    <text x="50%" y="50%" dominant-baseline="middle" text-anchor="middle" font-size="90px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
-</svg>`;
+            shape = new Square(answers.shapeColor);
             break;
         case 'Triangle':
-            return `
-<svg height="250" width="250">
-    <polygon points="125,50 250,200 0,200" fill="${color}" />
-    <text x="50%" y="70%" dominant-baseline="middle" text-anchor="middle" font-size="60px" fill="${textColor}" font-weight="bold" font-family="sans-serif">${text}</text>
-</svg>`;
+            shape = new Triangle(answers.shapeColor);
             break;
     }
 
-} 
-// Fuction to actually prompt the questions and write the SVG file
-inquirer.prompt(questions).then((data) => {
-    const svgContent = svgGenerator(data)
+    const textProps = shape.textProperties();
+
+    const svgContent = `
+    <svg xmlns="http://www.w3.org/2000/svg" width="250" height="250">
+        ${shape.render()}
+        <text x="50%" y="${textProps.y}" font-size="${textProps.fontSize}" text-anchor="middle" font-weight="bold" font-family="sans-serif" fill="${answers.textColor}">${answers.text}</text>
+    </svg>`;
+
     fs.writeFile('logo.svg', svgContent, (err) => {
         if (err) throw err;
         console.log('The logo has been saved as logo.svg!');
     });
 });
-// const objSVG = {text:'HGDS', textColor:'red', shape: 'Circle', color:'black'}
-// console.log(svgGenerator(objSVG));
-module.exports = {svgGenerator}
