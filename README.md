@@ -16,7 +16,9 @@ GIVEN a command-line application that accepts user input<br>* WHEN I am prompted
 To visit and review my project, [click here](https://github.com/VanZittle/V-logoGenerator)
   
 ## Visual reference of project
-The following image demonstrates the app's appearance:
+
+You can take a look at the demo [here](https://drive.google.com/file/d/1vTuWqPdGEiaSJjCbCW96dKK8J38fBIOG/view?usp=drive_link) <br><br>
+Also, the following image demonstrates the app's appearance:
   
 [This app can be run in Terminal with Node.](./assets/challenge_appReference.gif)
   
